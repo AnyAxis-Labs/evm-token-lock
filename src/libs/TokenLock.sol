@@ -4,7 +4,6 @@ pragma solidity ^0.8.20;
 library TokenLockLibrary {
     struct LockCreationParams {
         string title;
-        address depositor;
         address claimer;
         address token;
         uint256 lockAmount;
@@ -17,7 +16,6 @@ library TokenLockLibrary {
     function _validateLock(
         TokenLockLibrary.LockCreationParams memory lock
     ) internal pure {
-        require(lock.depositor != address(0), "Lock depositor must not be 0");
         require(lock.claimer != address(0), "Lock claimer must not be 0");
         require(lock.lockAmount > 0, "Lock amount must be positive");
         require(

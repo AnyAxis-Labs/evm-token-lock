@@ -11,11 +11,12 @@ contract TokenLockFactory {
         TokenLockLibrary.LockCreationParams memory lock
     ) external {
         TokenLock lockContract = new TokenLock(lock);
-        IERC20(lock.token).transferFrom(
-            lock.depositor,
+
+        require(IERC20(lock.token).transferFrom(
+            msg.sender,
             address(lockContract),
             lock.lockAmount
-        );
+        ), "Failed to transfer lock amount");
         emit CreateLock(address(lockContract));
     }
 }

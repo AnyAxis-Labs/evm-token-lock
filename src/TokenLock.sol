@@ -38,10 +38,10 @@ contract TokenLock {
             "Claimable amount is zero"
         );
         lockInfo.claimedAmount = lockInfo.claimedAmount + claimable;
-        IERC20(lockInfo.token).transfer(
+        require(IERC20(lockInfo.token).transfer(
             lockInfo.claimer,
             claimable
-        );
+        ), "Failed to transfer token to claimer");
         emit Claim(lockInfo.claimer, claimable);
     }
 
