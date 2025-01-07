@@ -29,7 +29,7 @@ library TokenLockLibrary {
             "Invalid release amount at Tge"
         );
         require(
-            lock.releaseAmountCycle > 0 && lock.releaseAmountCycle <= lock.lockAmount - lock.releaseAmountAtTge,
+            lock.releaseAmountCycle <= lock.lockAmount - lock.releaseAmountAtTge,
             "Invalid release cycle amount"
         );
     }
